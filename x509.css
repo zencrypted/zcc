@@ -1,0 +1,261 @@
+/* ==========================================================================
+   CHAT X.509 — Apple-style Telecom Landing Page
+   Clean • Minimal • Floating • Cross-platform
+   ========================================================================== */
+
+:root {
+    --color-bg:       #f5f5f7;
+    --color-text:     #1d1d1f;
+    --color-text-sec: #6e6e73;
+    --color-accent:   #0071e3;     /* Apple blue — used sparingly */
+    --color-link:     #0071e3;
+    --color-link-hov: #0066cc;
+    --radius:         18px;
+    --transition:     0.33s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --font-system:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-title:     SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+header {
+    opacity: 0;
+    transform: translateY(0px);
+    animation: heroFade 0.9s 0.2s forwards;
+}
+
+@keyframes heroFade {
+    to { opacity:1; transform:translateY(0); }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-system);
+    line-height: 1.5;
+    font-size: 17px;                    /* Apple's comfortable body size */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Navigation ──────────────────────────────────────────────────────────── */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;                       /* iOS-like nav height */
+    background: rgba(245, 245, 247, 0.92);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    transition: background 0.4s ease;
+}
+
+nav.scrolled {
+    background: rgba(245, 245, 247, 0.98);
+}
+
+nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+nav .dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--color-text);
+    padding: 8px 12px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 36px;
+    background: white;
+    min-width: 120px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 16px;
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    background: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* ── Header / Hero ───────────────────────────────────────────────────────── */
+header {
+    padding: 120px 24px 80px;
+    text-align: center;
+}
+
+header a img {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 24px;
+}
+
+header h1 {
+    font-family: var(--font-title);
+    font-size: clamp(56px, 10vw, 96px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    margin-bottom: 16px;
+}
+
+/* ── Main Content ────────────────────────────────────────────────────────── */
+main {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+main section {
+    margin: 140px 0;
+}
+
+main h3 {
+    font-family: var(--font-title);
+    font-size: clamp(40px, 7vw, 64px);
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    margin-bottom: 32px;
+}
+
+main p, main div {
+    font-size: 19px;
+    max-width: 720px;
+    margin: 0 auto 28px;
+    color: var(--color-text-sec);
+}
+
+main .se {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+/* Gallery ── floating cards style */
+figure {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin: 64px 0;
+}
+
+figure img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+                box-shadow 0.5s ease;
+}
+
+figure img:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.18);
+}
+
+/* ── Aside (sidebar-like info) ───────────────────────────────────────────── */
+aside {
+    max-width: 860px;
+    margin: 80px auto;
+    padding: 0 24px;
+}
+
+aside h3 {
+    font-size: 32px;
+    margin-bottom: 24px;
+}
+
+aside ul {
+    list-style: none;
+}
+
+aside ul li a {
+    display: block;
+    padding: 2px 0;
+    color: var(--color-link);
+    text-decoration: none;
+    font-size: 19px;
+    transition: color var(--transition);
+}
+
+aside ul li a:hover {
+    color: var(--color-link-hov);
+}
+
+/* ── Code snippet ────────────────────────────────────────────────────────── */
+figure code {
+    display: block;
+    background: #1d1d1f;
+    color: #f5f5f7;
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    font-family: SF Mono, Menlo, monospace;
+    font-size: 15px;
+    overflow-x: auto;
+    margin: 32px 0;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────────────── */
+footer {
+    text-align: center;
+    padding: 80px 24px 120px;
+    color: var(--color-text-sec);
+    font-size: 15px;
+}
+
+.heart {
+    color: #ff3b30;
+}
+
+/* ── Responsive adjustments ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    header { padding-top: 100px; }
+    main section { margin: 100px 0; }
+    main h3 { font-size: 48px; }
+    figure { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+    nav { padding: 0 16px; }
+    header h1 { font-size: 56px; }
+    main h3 { font-size: 40px; }
+}
